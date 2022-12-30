@@ -1,0 +1,6 @@
+name: Soulvester
+version: '${project.version}'
+main: de.theskyscout.soulvester.Soulvester
+api-version: 1.19
+authors: [ TheSkyScout ]
+description: Happy New Year SoulSMP!
