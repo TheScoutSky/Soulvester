@@ -25,7 +25,7 @@ object Silvester:Listener {
             override fun run() {
                 val calendar = Calendar.getInstance()
                 if(calendar.get(Calendar.MONTH)+1 != 12 && calendar.get(Calendar.DAY_OF_MONTH) != 31) return
-                if(calendar.get(Calendar.HOUR_OF_DAY) ==13 && calendar.get(Calendar.MINUTE) == 47&& calendar.get(Calendar.SECOND) == 50) {
+                if(calendar.get(Calendar.HOUR_OF_DAY) ==23 && calendar.get(Calendar.MINUTE) == 59&& calendar.get(Calendar.SECOND) == 50) {
                     onSilvester(plugin)
                     cancel()
                 }
