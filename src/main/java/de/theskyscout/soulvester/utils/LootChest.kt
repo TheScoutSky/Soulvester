@@ -10,11 +10,11 @@ import org.bukkit.enchantments.EnchantmentTarget
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.Recipe
+import org.bukkit.loot.LootContext
+import org.bukkit.loot.LootTables
 import kotlin.random.Random
 
 object LootChest {
-
     val chests = ArrayList<Player>()
     fun spawnSilvesterChest(player: Player) {
         while (!chests.contains(player)) {
@@ -27,31 +27,11 @@ object LootChest {
             if(blockcheck.getRelative(BlockFace.DOWN).type == Material.AIR)return
             blockcheck.type = Material.CHEST
             val chest: Chest = blockcheck.state as Chest
-            val chestInv = chest.blockInventory
-            for(i in 5..Random.nextInt(10,20)) {
-                chestInv.setItem(Random.nextInt(0, 26), getRandomItem())
-            }
+            chest.setLootTable(Bukkit.getLootTable(LootTables.BASTION_TREASURE.key));
+            chest.update();
+            chest.inventory.addItem()
             chests.add(player)
         }
-    }
-    fun getRandomItem():ItemStack {
-        val check = false
-        val extras = listOf(Material.DIAMOND, Material.IRON_BARS, Material.EMERALD, Material.GOLDEN_APPLE, Material.GOLD_INGOT, Material.SHULKER_SHELL)
-        while (!check) {
-            val material = Material.values()[Random.nextInt(Material.values().size)]
-            val recipes = Bukkit.getServer().getRecipesFor(ItemStack(material))
-            if(recipes.isNotEmpty() || extras.contains(material)) {
-                var anzahl = Random.nextInt(1, 64)
-                if(material.isBlock) anzahl = Random.nextInt(2, 64)
-                if(extras.contains(material)) anzahl = Random.nextInt(2, 64)
-                if(EnchantmentTarget.ALL.includes(material)) anzahl = 1
-
-                return ItemStack(material, anzahl)
-            }
-
-        }
-
-        TODO()
     }
 
 }

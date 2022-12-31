@@ -25,7 +25,7 @@ object Silvester:Listener {
             override fun run() {
                 val calendar = Calendar.getInstance()
                 if(calendar.get(Calendar.MONTH)+1 != 12 && calendar.get(Calendar.DAY_OF_MONTH) != 31) return
-                if(calendar.get(Calendar.HOUR_OF_DAY) ==23 && calendar.get(Calendar.MINUTE) == 59&& calendar.get(Calendar.SECOND) == 50) {
+                if(calendar.get(Calendar.HOUR_OF_DAY) ==13 && calendar.get(Calendar.MINUTE) == 47&& calendar.get(Calendar.SECOND) == 50) {
                     onSilvester(plugin)
                     cancel()
                 }
@@ -56,13 +56,14 @@ object Silvester:Listener {
     }
     var timer = 10
     var silvester = false
+    var mm = MiniMessage.miniMessage()
     fun onSilvester(plugin:JavaPlugin){
         object : BukkitRunnable(){
             override fun run(){
                 if(!silvester) {
                     Bukkit.getOnlinePlayers().forEach {
                         it.showTitle(Title.title(Component.text("${timer}", NamedTextColor.GREEN), Component.text("")))
-                        it.playSound(it.location, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 10.0F,10.0F)
+                        it.playSound(it.location, Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 10.0F,0F)
                     }
                 }
                 timer--
@@ -70,7 +71,7 @@ object Silvester:Listener {
                     silvester = true
                     Bukkit.getOnlinePlayers().forEach {
                         if(timer==-1)it.playSound(it.location, Sound.UI_TOAST_CHALLENGE_COMPLETE, 10.0F,10.0F)
-                        if(timer==-1)it.showTitle(Title.title(Component.text("Happy New Year", NamedTextColor.GREEN), Component.text("wünscht euch SoulSMP!", NamedTextColor.BLUE)))
+                        if(timer==-1)it.showTitle(Title.title(mm.deserialize("<gradient:blue:#9a03ff><bold>Frohes Neues "), mm.deserialize("<gradient:#00ff6e:#aaff00>Wünscht euch SoulSMP")))
                         for(i in 0..5){
                             val x = Random.nextInt(-40, 40)
                             val z = Random.nextInt(-40, 40)
