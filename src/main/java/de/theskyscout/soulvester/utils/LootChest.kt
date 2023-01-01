@@ -29,7 +29,6 @@ object LootChest {
             val chest: Chest = blockcheck.state as Chest
             chest.setLootTable(Bukkit.getLootTable(LootTables.BASTION_TREASURE.key));
             chest.update();
-            chest.inventory.addItem()
             chests.add(player)
         }
     }

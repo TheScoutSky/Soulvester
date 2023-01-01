@@ -24,8 +24,8 @@ object Silvester:Listener {
         object : BukkitRunnable() {
             override fun run() {
                 val calendar = Calendar.getInstance()
-                if(calendar.get(Calendar.MONTH)+1 != 12 && calendar.get(Calendar.DAY_OF_MONTH) != 31) return
-                if(calendar.get(Calendar.HOUR_OF_DAY) ==23 && calendar.get(Calendar.MINUTE) == 59&& calendar.get(Calendar.SECOND) == 50) {
+                if(calendar.get(Calendar.MONTH)+1 != 1 && calendar.get(Calendar.DAY_OF_MONTH) != 1) return
+                if(calendar.get(Calendar.HOUR_OF_DAY) ==0 && calendar.get(Calendar.MINUTE) == 9&& calendar.get(Calendar.SECOND) == 49) {
                     onSilvester(plugin)
                     cancel()
                 }
